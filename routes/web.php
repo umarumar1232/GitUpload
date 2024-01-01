@@ -26,7 +26,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::group(['middleware' => ['role:admin']], function () {
+    // Route::group(['middleware' => ['role:admin']], function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('categories', CategoriesController::class);
     });
@@ -37,4 +37,4 @@ Route::middleware([
     Route::get('list-articles/edit/{article}', [ArticleController::class, 'edit'])->name('articles.edit');
     Route::put('list-articles/edit/{article}', [ArticleController::class, 'update'])->name('articles.update');
     Route::delete('list-articles/{article}', [ArticleController::class, 'destroy'])->name('articles.destroy');
-});
+// });

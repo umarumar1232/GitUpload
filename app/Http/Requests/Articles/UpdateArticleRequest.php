@@ -24,7 +24,7 @@ class UpdateArticleRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:200', Rule::unique('articles', 'title')->ignore($this->article)],
-            'body' => 'required|string|max:1000',
+            'body' => 'required|string|max:10000',
             'category' => 'required|exists:categories,id',
             'cover' => ['nullable', 'image', 'max:2048', Rule::dimensions()->minWidth(780)->minWidth(500)->maxWidth(1000)->maxHeight(600)]
         ];

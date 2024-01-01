@@ -79,7 +79,6 @@ class ArticleController extends Controller
             $article->update($data);
             $article->categories()->sync($data['category']);
         }
-
         return to_route('list-articles');
     }
 

@@ -35,32 +35,35 @@
                     Game<span>Verse</span>
                 </a>
 
-                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                    data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="fa fa-bars"></span>
                 </button>
 
                 <div class="collapse navbar-collapse text-center" id="navbarsExample09">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ url('/') }}">Home <span
+                                    class="sr-only">(current)</span></a>
                         </li>
                         @if (!Auth::check() && Route::has('register'))
-                        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
                         @endif
                     </ul>
 
                     @auth
-                    <div class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
-                        @role('admin')
-                        <a href="{{ url('/dashboard') }}" class="btn btn-solid-border btn-round-full">Dashboard</a>
+                        <div class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
+                            @role('admin')
+                                <a href="{{ url('/dashboard') }}" class="btn btn-solid-border btn-round-full">Dashboard</a>
+                            @else
+                                <a href="{{ url('/list-articles') }}" class="btn btn-solid-border btn-round-full">Dashboard</a>
+                            @endrole
                         @else
-                        <a href="{{ url('/list-articles') }}" class="btn btn-solid-border btn-round-full">Dashboard</a>
-                        @endrole
-                    @else
-                    </div>
-                    @if (Route::has('login'))
-                    <a href="{{ route('login') }}" class="btn btn-solid-border btn-round-full">Log in</a>
-                    @endif
+                        </div>
+                        @if (Route::has('login'))
+                            <a href="{{ route('login') }}" class="btn btn-solid-border btn-round-full">Log in</a>
+                        @endif
                     @endauth
                 </div>
             </div>
@@ -87,22 +90,27 @@
                     <div class="col-lg-8">
                         <div class="row">
                             @foreach ($articles as $article)
-                            <div class="col-lg-6 col-md-6 mb-5">
-                                <div class="blog-item">
-                                    @if ($article->cover && Storage::disk('public')->exists($article->cover))
-                                    <img src="{{Storage::url($article->cover)}}" alt="" class="img-fluid rounded">
-                                    @else
-                                    <img src="https://via.placeholder.com/780x510.png/00aa11?text=No+Image" alt="" class="img-fluid rounded">
-                                    @endif
+                                <div class="col-lg-6 col-md-6 mb-5">
+                                    <div class="blog-item">
+                                        @if ($article->cover && Storage::disk('public')->exists($article->cover))
+                                            <img src="{{ Storage::url($article->cover) }}" alt=""
+                                                class="img-fluid rounded">
+                                        @else
+                                            <img src="https://via.placeholder.com/780x510.png/00aa11?text=No+Image"
+                                                alt="" class="img-fluid rounded">
+                                        @endif
 
-                                    <div class="blog-item-content bg-white p-4">
-                                        <h3 class="mt-3 mb-3"><a href="{{route('articles.show', $article->id)}}">{{Str::title($article->title)}}</a></h3>
-                                        <p class="mb-4">{{Str::limit(strip_tags($article->body), 100)}}</p>
+                                        <div class="blog-item-content bg-white p-4">
+                                            <h3 class="mt-3 mb-3"><a
+                                                    href="{{ route('articles.show', $article->id) }}">{{ Str::title($article->title) }}</a>
+                                            </h3>
+                                            <p class="mb-4">{{ Str::limit(strip_tags($article->body), 100) }}</p>
 
-                                        <a href="{{route('articles.show', $article->id)}}" class="btn btn-small btn-main btn-round-full">Learn More</a>
+                                            <a href="{{ route('articles.show', $article->id) }}"
+                                                class="btn btn-small btn-main btn-round-full">Learn More</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
                     </div>
@@ -113,7 +121,7 @@
                                 <h5 class="mb-4">Categories</h5>
 
                                 @foreach ($categories as $category)
-                                    <a href="#">{{$category->name}}</a>
+                                    <a href="#">{{ $category->name }}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -175,8 +183,8 @@
                         <div class="logo mb-4">
                             <h3>Game<span>Verse</span></h3>
                         </div>
-                        <h6><a href="tel:+23-345-67890">Support@hello.com</a></h6>
-                        <a href="mailto:support@gmail.com"><span class="text-color h4">+23-456-6588</span></a>
+                        <h6><a href="mailto:umar.baikhati1@gmail.com">umar.baikhati1@gmail.com</a></h6>
+                        <a href="tel:+821-7029-0198"><span class="text-color h4">+821-7029-0198</span></a>
                     </div>
                 </div>
             </div>
@@ -184,7 +192,7 @@
         </div>
     </footer>
 
-    <!-- 
+    <!--
     Essential Scripts
     =====================================-->
 
@@ -205,7 +213,8 @@
 
     <!-- Google Map -->
     <script src="{{ asset('assets/plugins/google-map/map.js') }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap">
+    </script>
 
     <script src="{{ asset('assets/js/script.js') }}"></script>
 

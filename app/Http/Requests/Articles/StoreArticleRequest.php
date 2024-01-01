@@ -24,9 +24,9 @@ class StoreArticleRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:200|unique:articles,title',
-            'body' => 'required|string|max:1000',
+            'body' => 'required|string|max:10000',
             'category' => 'required|exists:categories,id',
-            'cover' => ['required', 'image', 'max:2048', Rule::dimensions()->minWidth(780)->minWidth(500)->maxWidth(1000)->maxHeight(600)]
+            'cover' => ['image', 'max:2048', Rule::dimensions()->minWidth(780)->minWidth(500)->maxWidth(1200)->maxHeight(950)]
         ];
     }
 }
