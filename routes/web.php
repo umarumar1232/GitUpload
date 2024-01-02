@@ -30,7 +30,11 @@ Route::middleware([
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('categories', CategoriesController::class);
     });
-
+    // Chat
+    Route::get(uri:'/', action:'App\Http\Controllers\PusherController@index');
+    Route::post(uri:'/broadcast', action:'App\Http\Controllers\PusherController@broadcast');
+    Route::post(uri:'/receive', action:'App\Http\Controllers\PusherController@receive');
+    
     Route::get('list-articles', [ArticleController::class, 'listArticles'])->name('list-articles');
     Route::get('list-articles/create', [ArticleController::class, 'create'])->name('articles.create');
     Route::post('list-articles/create', [ArticleController::class, 'store'])->name('articles.store');
