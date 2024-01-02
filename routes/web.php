@@ -31,9 +31,9 @@ Route::middleware([
         Route::resource('categories', CategoriesController::class);
     });
     // Chat
-    Route::get(uri:'/', action:'App\Http\Controllers\PusherController@index');
-    Route::post(uri:'/broadcast', action:'App\Http\Controllers\PusherController@broadcast');
-    Route::post(uri:'/receive', action:'App\Http\Controllers\PusherController@receive');
+    Route::get(uri:'chat/index', action:'App\Http\Controllers\PusherController@index');
+    Route::post(uri:'chat/broadcast', action:'App\Http\Controllers\PusherController@broadcast');
+    Route::post(uri:'chat/receive', action:'App\Http\Controllers\PusherController@receive');
     
     Route::get('list-articles', [ArticleController::class, 'listArticles'])->name('list-articles');
     Route::get('list-articles/create', [ArticleController::class, 'create'])->name('articles.create');
